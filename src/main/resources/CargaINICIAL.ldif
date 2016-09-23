@@ -61,4 +61,9 @@ objectClass: top
 objectClass: groupOfNames
 cn: Administrador
 member: uid=usuario01,ou=personas,dc=japs,dc=mx
+
+dn: cn=Operador,dc=Aplicacion01,dc=aplicaciones,ou=desarrollo,dc=japs,dc=mx
+objectClass: top
+objectClass: groupOfNames
+cn: Operador
 member: uid=usuario02,ou=personas,dc=japs,dc=mx

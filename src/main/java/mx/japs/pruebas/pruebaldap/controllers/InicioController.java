@@ -1,11 +1,9 @@
 package mx.japs.pruebas.pruebaldap.controllers;
 
-import java.util.Collection;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,11 +14,24 @@ public class InicioController {
 	@GetMapping("/")
     public String index() {
 		logger.debug("index()");
-		
-		Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-		for(SimpleGrantedAuthority authoritie : authorities)
-			logger.debug("ROL: {}", authoritie.getAuthority());
-		
+
         return "Hola Mundo... Pagina Inicial!";
+    }
+	
+	@GetMapping("/usuarios")
+	@Secured({"PERM_SELECT_USUARIO"})
+    public String usuarios() {
+		logger.debug("usuarios()");
+
+        return "Hola Mundo... usuarios!";
+    }
+	
+	@GetMapping("/usuarios_modifica")
+	@Secured({"PERM_UPDATE_USUARIO"})
+	@PreAuthorize("hasAuthority('PERM_UPDATE_USUARIO')")
+    public String usuarios_modifica() {
+		logger.debug("usuarios_modifica()");
+
+        return "Hola Mundo... usuarios_modifica!";
     }
 }
