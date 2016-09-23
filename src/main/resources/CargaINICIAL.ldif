@@ -55,7 +55,7 @@ dc: Aplicacion02
 
 
 #### PERFILES APLICACIONES
-##### ROLES SIAM SANTANDER
+##### ROLES APLICACION 01
 dn: cn=Administrador,dc=Aplicacion01,dc=aplicaciones,ou=desarrollo,dc=japs,dc=mx
 objectClass: top
 objectClass: groupOfNames
