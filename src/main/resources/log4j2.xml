@@ -23,17 +23,17 @@
     		<AppenderRef ref="AsyncArchivo" />
         </Logger>
         
-        <Logger level="INFO" name="org.apache.directory">
-    		<AppenderRef ref="AsyncArchivo" />
+        <Logger level="WARN" name="org.apache.directory">
+    		<AppenderRef ref="AsyncConsola" />
         </Logger>
         
-        <Logger level="DEBUG" name="org.springframework.security">
-    		<AppenderRef ref="AsyncArchivo" />
+        <Logger level="WARN" name="org.springframework.security">
+    		<AppenderRef ref="AsyncConsola" />
         </Logger>
     
-        <Root level="ERROR">
+        <Root level="WARN">
             <!-- AppenderRef ref="Consola" /-->
-            <AppenderRef ref="AsyncArchivo"/>
+            <AppenderRef ref="AsyncConsola"/>
         </Root>
     </Loggers>
 </Configuration>

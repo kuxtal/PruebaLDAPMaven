@@ -5,11 +5,6 @@ objectclass: top
 objectclass: organizationalUnit
 ou: desarrollo
 
-dn: ou=pruebas,dc=japs,dc=mx
-objectclass: top
-objectclass: organizationalUnit
-ou: pruebas
-
 dn: ou=personas,dc=japs,dc=mx
 objectclass: top
 objectclass: organizationalUnit
@@ -34,6 +29,16 @@ objectClass: organizationalPerson
 cn: Usuario
 sn: Prueba
 uid: usuario02
+userPassword: password
+
+dn: uid=usuario03,ou=personas,dc=japs,dc=mx
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: person
+objectClass: organizationalPerson
+cn: Usuario
+sn: Prueba
+uid: usuario03
 userPassword: password
 
 
