@@ -17,14 +17,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import mx.japs.pruebas.pruebaldap.servicios.ServicioInicial;
+import mx.japs.pruebas.pruebaldap.servicios.ServicioMensaje;
 
 @Controller
 public class InicioController {
 	private static final Logger logger = LogManager.getLogger(InicioController.class);
 	
 	@Autowired
-	ServicioInicial servicioMsj;
+	ServicioMensaje servicioMsj;
 
 	@GetMapping("/")
 	public String index(Map<String, Object> model, Principal principal) {

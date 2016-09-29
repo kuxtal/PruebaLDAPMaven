@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,8 +15,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, jsr250Enabled = true)
+@PropertySource("classpath:app.properties")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final Logger logger = LogManager.getLogger(WebSecurityConfig.class);
+	
+	@Autowired
+	private Environment env;
 	
 	@Autowired
 	CustomLdapUserDetailsMapper userDatailMapper;
@@ -39,12 +45,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		auth
 			.ldapAuthentication()
-				.userDnPatterns("uid={0},ou=personas")
-				.groupSearchBase("dc=Aplicacion01,dc=aplicaciones,ou=desarrollo")
-				.groupSearchFilter("(member={0})")
+				.userDnPatterns(env.getProperty("ldap.userDnPatterns"))
+				.groupSearchBase(env.getProperty("ldap.groupSearchBase"))
+				.groupSearchFilter(env.getProperty("ldap.groupSearchFilter"))
 				.contextSource()
-					.root("dc=japs,dc=mx")
-					.ldif("classpath:CargaINICIAL.ldif")
+					.root(env.getProperty("ldap.root"))
+					.ldif(env.getProperty("ldap.ldif"))
 					.and()
 				.userDetailsContextMapper(userDatailMapper);
 		

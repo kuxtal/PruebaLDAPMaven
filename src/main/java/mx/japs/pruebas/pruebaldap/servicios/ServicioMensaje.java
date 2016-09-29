@@ -2,7 +2,7 @@ package mx.japs.pruebas.pruebaldap.servicios;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-public interface ServicioInicial {
+public interface ServicioMensaje {
 
 	@PreAuthorize("hasRole('SELECT_MENSAJE')")
 	public String getMensaje();
